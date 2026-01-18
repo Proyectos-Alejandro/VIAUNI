@@ -20,13 +20,13 @@ if (!isset($_SESSION['user_id'])) {
 <body>
 
     <?php include '../includes/menu.php'; ?>
-    <hr/>
+    <hr id="home">
     <?php include '../includes/header.php'; ?>
-    <hr>
+    <hr id="buscarviaje">
     <?php include '../includes/buscarviaje.php'; ?>
-    <hr/>
+    <hr id="estadisticas">
     <?php include '../includes/estadisticas.php'; ?>
-    <hr/>
+    <hr id="galeria">
     <main>
         <hr/>
         <?php include '../includes/galeria.php'; ?>
