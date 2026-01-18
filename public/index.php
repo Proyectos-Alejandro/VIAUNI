@@ -28,7 +28,9 @@ if (!isset($_SESSION['user_id'])) {
     <?php include '../includes/estadisticas.php'; ?>
     <hr id="mas_info">
     <?php include '../includes/bloque_informacion.php'; ?>
-    <hr/>
+    <hr id="formulario">
+    <?php include '../includes/formulario.php'; ?>
+    <hr>
     <?php include '../includes/footer.php'; ?>
 
 </body>
