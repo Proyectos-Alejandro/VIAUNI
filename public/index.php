@@ -26,12 +26,8 @@ if (!isset($_SESSION['user_id'])) {
     <?php include '../includes/buscarviaje.php'; ?>
     <hr id="estadisticas">
     <?php include '../includes/estadisticas.php'; ?>
-    <hr id="galeria">
-    <main>
-        <hr/>
-        <?php include '../includes/galeria.php'; ?>
-        <hr/>
-    </main>
+    <hr id="mas_info">
+    <?php include '../includes/bloque_informacion.php'; ?>
     <hr/>
     <?php include '../includes/footer.php'; ?>
 
