@@ -4,6 +4,9 @@
 
     $stmt = $pdo->query("SELECT U.NOMBRE, U.APELLIDO1, U.APELLIDO2, U.COCHE, U.FOTO, C1.NOMBRE_CIUDAD AS ORIGEN, C2.NOMBRE_CIUDAD AS DESTINO, V.FECHA_HORA, V.PLAZAS_TOTALES, V.PRECIO, V.DESCRIPCION_EXTRA FROM VIAJES V INNER JOIN USUARIO U ON U.ID = V.CONDUCTOR_ID INNER JOIN CIUDADES C1 ON C1.ID = V.ID_ORIGEN INNER JOIN CIUDADES C2 ON C2.ID = V.ID_DESTINO;");
     $infoviaje = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    $opcionesviaje = $pdo->query("SELECT NOMBRE_CIUDAD FROM CIUDADES WHERE NOMBRE_CIUDAD COLLATE utf8mb4_unicode_ci LIKE '%%'");
+    $viajes = $opcionesviaje->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 
@@ -12,12 +15,12 @@
 <div class="filtros_buscar">
     <form action="index.php">
 
-            <?php if (count($infoviaje) > 0): ?>
+            <?php if (count($viajes) > 0): ?>
                 <div class="contenedor_origen">
                     <input list="filtro_origen" name="filtro_origen">
                     <datalist id="filtro_origen">
-                        <?php foreach ($infoviaje as $viaje): ?>
-                            <option value="<?php echo $viaje['ORIGEN']; ?>">
+                        <?php foreach ($viajes as $viaje): ?>
+                            <option value="<?php echo $viaje['NOMBRE_CIUDAD']; ?>">
                         <?php endforeach; ?>
                     </datalist>  
                 </div>
@@ -30,12 +33,12 @@
                 </div>
             <?php endif; ?>  
 
-            <?php if(count($infoviaje) > 0): ?>
+            <?php if(count($viajes) > 0): ?>
                 <div class="contenedor_destino">
                     <input list="filtro_destino" name="filtro_destino">
                     <datalist id="filtro_destino">
-                        <?php foreach ($infoviaje as $viaje): ?>
-                            <option value="<?php echo $viaje ['DESTINO']; ?>">
+                        <?php foreach ($viajes as $viaje): ?>
+                            <option value="<?php echo $viaje['NOMBRE_CIUDAD']; ?>">
                         <?php endforeach; ?>
                     </datalist>
                 </div>
@@ -112,7 +115,29 @@
             </div>
         <?php endforeach; ?>
     <?php else: ?>
-        <p>No hay viajes disponibles con estos filtros, se el primero en publicar uno</p>
+
+        <p>No hay viajes disponibles con estos filtros</p>
+
+        <?php $error_busqueda = "SELECT U.NOMBRE, U.APELLIDO1, U.APELLIDO2, U.COCHE, U.FOTO, C1.NOMBRE_CIUDAD AS ORIGEN, C2.NOMBRE_CIUDAD AS DESTINO, V.FECHA_HORA, V.PLAZAS_TOTALES, V.PRECIO, V.DESCRIPCION_EXTRA FROM VIAJES V INNER JOIN USUARIO U ON U.ID = V.CONDUCTOR_ID INNER JOIN CIUDADES C1 ON C1.ID = V.ID_ORIGEN INNER JOIN CIUDADES C2 ON C2.ID = V.ID_DESTINO"; ?>
+        <?php $stmt = $pdo->prepare($error_busqueda);
+        $stmt->execute();
+
+        $error_viajes = $stmt->fetchAll(PDO::FETCH_ASSOC); ?>
+
+        <?php foreach ($error_viajes as $viaje): ?>
+            <div class="viaje">
+                <h3>Viaja con <?php echo ($viaje['NOMBRE'] . ' ' . $viaje['APELLIDO1'] . ' ' . $viaje['APELLIDO2']); ?></h3>
+                <img src="<?php echo '../assets/img/perfilusuario/' . $viaje['FOTO']; ?>" alt="Foto <?php echo $viaje['NOMBRE']; ?>" height="50" width="50">
+                <p>Origen: <?php echo $viaje['ORIGEN']; ?></p>
+                <p>Destino: <?php echo $viaje['DESTINO']; ?></p>
+                <p>Fecha y hora: <?php echo $viaje['FECHA_HORA']; ?></p>
+                <p>Plazas totales: <?php echo $viaje['PLAZAS_TOTALES']; ?></p>
+                <p>Precio: <?php echo $viaje['PRECIO']; ?></p>
+                <p>Descripción extra: <?php echo $viaje['DESCRIPCION_EXTRA']; ?></p>
+                <button type="button">Reservar</button>
+            </div>
+
+        <?php endforeach; ?>
     <?php endif; ?>
     </div>
 
