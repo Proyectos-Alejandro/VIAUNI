@@ -63,9 +63,6 @@ if (isset($_POST['btn_login'])) {
     }
 }
 
-
-
-        require_once '../config/db.php';
         
         $stmtlogo = $pdo->query("SELECT logo, nombre FROM empresa LIMIT 1");
         $empresa = $stmtlogo->fetch();

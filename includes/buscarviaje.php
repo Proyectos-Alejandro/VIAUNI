@@ -15,45 +15,50 @@
 <div class="filtros_buscar">
     <form action="index.php">
 
-            <?php if (count($viajes) > 0): ?>
-                <div class="contenedor_origen">
-                    <input list="filtro_origen" name="filtro_origen" placeholder="Origen">
-                    <datalist id="filtro_origen">
-                        <?php foreach ($viajes as $viaje): ?>
-                            <option value="<?php echo $viaje['NOMBRE_CIUDAD']; ?>">
-                        <?php endforeach; ?>
-                    </datalist>  
-                </div>
-            <?php else: ?>
-                <div class="contenedor_origen">
+        <fieldset class="fieldset_buscar">
+            <legend>BUSCA TU VIAJE</legend>
+
+                <?php if (count($viajes) > 0): ?>
+                    <div class="contenedor_origen">
                         <input list="filtro_origen" name="filtro_origen" placeholder="Origen">
                         <datalist id="filtro_origen">
-                        <option value="">
+                            <?php foreach ($viajes as $viaje): ?>
+                                <option value="<?php echo $viaje['NOMBRE_CIUDAD']; ?>">
+                            <?php endforeach; ?>
                         </datalist>  
-                </div>
-            <?php endif; ?>  
+                    </div>
+                <?php else: ?>
+                    <div class="contenedor_origen">
+                            <input list="filtro_origen" name="filtro_origen" placeholder="Origen">
+                            <datalist id="filtro_origen">
+                            <option value="">
+                            </datalist>  
+                    </div>
+                <?php endif; ?>  
 
-            <?php if(count($viajes) > 0): ?>
-                <div class="contenedor_destino">
-                    <input list="filtro_destino" name="filtro_destino" placeholder="Destino">
-                    <datalist id="filtro_destino">
-                        <?php foreach ($viajes as $viaje): ?>
-                            <option value="<?php echo $viaje['NOMBRE_CIUDAD']; ?>">
-                        <?php endforeach; ?>
-                    </datalist>
-                </div>
-            <?php else: ?>
-                <div class="contenedor_destino">
+                <?php if(count($viajes) > 0): ?>
+                    <div class="contenedor_destino">
                         <input list="filtro_destino" name="filtro_destino" placeholder="Destino">
                         <datalist id="filtro_destino">
-                        <option value="">
-                        </datalist>  
-                </div>
-            <?php endif; ?>  
+                            <?php foreach ($viajes as $viaje): ?>
+                                <option value="<?php echo $viaje['NOMBRE_CIUDAD']; ?>">
+                            <?php endforeach; ?>
+                        </datalist>
+                    </div>
+                <?php else: ?>
+                    <div class="contenedor_destino">
+                            <input list="filtro_destino" name="filtro_destino" placeholder="Destino">
+                            <datalist id="filtro_destino">
+                            <option value="">
+                            </datalist>  
+                    </div>
+                <?php endif; ?>  
+            
+            <input type="date" name="filtro_fecha">
+            <input type="text" name="filtro_plazas" placeholder="Nº de Plazas">
+            <button type="submit">Buscar</button>
+        </fieldset>
         
-        <input type="date" name="filtro_fecha">
-        <input type="text" name="filtro_plazas" placeholder="Nº de Plazas">
-        <button type="submit">Buscar</button>
     </form>
 </div>
 
