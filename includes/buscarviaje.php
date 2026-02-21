@@ -10,18 +10,16 @@
 ?>
 
 
-
-
 <div class="filtros_buscar">
-    <form action="index.php">
 
+    <form action="index.php"> <!-- FORMULARIO PARA BUSCAR VIAJES -->
         <fieldset class="fieldset_buscar">
             <legend>BUSCA TU VIAJE</legend>
 
-                <?php if (count($viajes) > 0): ?>
+                <?php if (count($viajes) > 0): ?> <!-- BUSCA EN LA BASE DE DATOS TODAS LAS CIUDADES, SI HAY LAS MUESTRA -->
                     <div class="contenedor_origen">
                         <input list="filtro_origen" name="filtro_origen" placeholder="Origen">
-                        <datalist id="filtro_origen">
+                        <datalist id="filtro_origen"> <!-- MUESTRA TODAS LAS CIUDADES SIN NECESIDAD DE ESCRIBIR -->
                             <?php foreach ($viajes as $viaje): ?>
                                 <option value="<?php echo $viaje['NOMBRE_CIUDAD']; ?>">
                             <?php endforeach; ?>
@@ -36,7 +34,7 @@
                     </div>
                 <?php endif; ?>  
 
-                <?php if(count($viajes) > 0): ?>
+                <?php if(count($viajes) > 0): ?> <!-- LO MISMO QUE EN EL DE ORIGEN -->
                     <div class="contenedor_destino">
                         <input list="filtro_destino" name="filtro_destino" placeholder="Destino">
                         <datalist id="filtro_destino">
@@ -63,7 +61,7 @@
 </div>
 
 
-<div class="filtro_resultado">
+<div class="filtro_resultado"> <!-- ESTO VA A BUSCAR TODOS LOS VIAJES DISPONIBLES PARA TENERLO PREPARADO PARA CUANDO ALGUIEN BUSQUE ALGO -->
 
     <?php 
         
@@ -103,10 +101,10 @@
         }
 
         $stmt->execute();
-        $infoviaje = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $infoviaje = $stmt->fetchAll(PDO::FETCH_ASSOC); // GUARDA TODO LO DE ESTA CONSULTA EN LA VARIABLE INFOVIAJE //
     ?>
 
-    <?php if (count($infoviaje) > 0): ?>
+    <?php if (count($infoviaje) > 0): ?> <!-- SI HAY VIAJES DIPONIBLES, LOS MUESTRA, SI NO HAY DA UN MENSAJE Y MUESTRA TODOS LOS VIAJES -->
     <div class="contenedor_viajes">
         <?php foreach ($infoviaje as $viaje): ?>
             <div class="viaje">

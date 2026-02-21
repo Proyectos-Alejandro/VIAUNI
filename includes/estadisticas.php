@@ -11,7 +11,7 @@ require_once '../config/db.php';
     $stmtReservas = $pdo->query("SELECT COUNT(*) FROM reservas");
     $numReservas = $stmtReservas->fetchColumn();
 
-
+// UN CONTEO DE LAS ESTADISTICAS PRINCIPALES DE LA PAGINA Y LUEGO MOSTRARLAS //
 ?>
 
 <section id="estadisticas" class="seccion_estadisticas">

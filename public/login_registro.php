@@ -10,31 +10,32 @@ if (isset($_POST['btn_registro'])) {
     $apellido2 = $_POST['apellido2'];
     $email = $_POST['email'];
     $password = $_POST['password'];
-    $password_hash = password_hash($password, PASSWORD_BCRYPT, ["cost" => 10]);
+    $password_hash = password_hash($password, PASSWORD_BCRYPT, ["cost" => 10]); // ENCRIPTADO DE CONTRASEÑA CON BCRYPT Y COSTE 10, MAS SEGYRA PERO SI SE PONE MAS TARDA MAS EN CARGAR //
 
 
-    if (strlen($password) < 7) { 
+    if (strlen($password) < 7) { // REQUISITOS DE LA CONTRASEÑA //
         
         $mensaje = "La contraseña es muy sencilla, debe tener al menos 7 caracteres";
     } else if (!preg_match('/[A-Z]/', $password) || !preg_match('/[0-9]/', $password) || !preg_match('/[^\w]/', $password)) {
         $mensaje = "La contraseña debe tener como mínimo una mayúscula, un número y un carácter especial";
-    }else{
-        
+    }else{ // SI SE HA CUMPLIDO TODO LO DE ANTES COMPRUEBA SI EL CORREO YA ESTÁ REGISTRADO //
         
         $check = $pdo->prepare("SELECT ID FROM usuario WHERE CORREO = :email");
         $check->execute([':email' => $email]);
 
-        if ($check->rowCount() > 0) {
+        if ($check->rowCount() > 0) {  // SI EL CORREO YA EXISTE DA UN ERROR //
             $mensaje = "Tu correo ya está registrado";
-        } else {
+        } else { // SI NO EXISTE EL CORREO, CREA LA CUENTA SIN FOTO POR EL MOMENTO //
             
             $sql = "INSERT INTO usuario (NOMBRE, APELLIDO1, APELLIDO2, CORREO, PASSWORD, FOTO) 
                     VALUES (:nombre, :apellido1, :apellido2, :email, :password_hash, 'sinfoto.png')";
             $stmt = $pdo->prepare($sql);
             
+
+            // COMPRUEBA SI SE HA CREADO LA CUENTA CORRECTAMENTE Y MUESTRA UN MENSAJE //
             if ($stmt->execute([':nombre' => $nombre, ':apellido1' => $apellido1, ':apellido2' => $apellido2, ':email' => $email, ':password_hash' => $password_hash])) {
                 $mensaje = "¡Cuenta creada! Ahora inicia sesión.";
-            } else {
+            } else { // ERROR SI NO SE HA PODIDO CREAR LA CUENTA //
                 $mensaje = "Error al registrarse.";
             }
         }
@@ -42,7 +43,7 @@ if (isset($_POST['btn_registro'])) {
 }
 
 
-if (isset($_POST['btn_login'])) {
+if (isset($_POST['btn_login'])) {  // COMPROBAR SI LA INFO EXISTE EN LA BASE DE DATOS // 
     $email = $_POST['email'];
     $password = $_POST['password'];
     
@@ -58,12 +59,11 @@ if (isset($_POST['btn_login'])) {
         
         header("Location: index.php");
         exit();
-    } else {
+    } else { // SI NO SE HA ENCONTRADO EL USUARIO O LA CONTRASEÑA ES INCORRECTA  ERROR //
         $mensaje = "Usuario o contraseña incorrectos.";
     }
 }
-
-        
+      // DECORACIÓN //  
         $stmtlogo = $pdo->query("SELECT logo, nombre FROM empresa LIMIT 1");
         $empresa = $stmtlogo->fetch();
 
