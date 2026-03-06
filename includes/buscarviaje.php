@@ -54,7 +54,7 @@
             
             <input type="date" name="filtro_fecha">
             <input type="text" name="filtro_plazas" placeholder="Nº de Plazas">
-            <button type="submit">Buscar</button>
+            <button type="submit">BUSCAR</button>
         </fieldset>
         
     </form>
@@ -83,7 +83,7 @@
             $filtro_texto .= " AND DATE(V.FECHA_HORA) = :fecha";
         }
         if (!empty($filtro_plazas)) {
-            $filtro_texto .= " AND BPV.PLAZAS_TOTALES >= :plazas";
+            $filtro_texto .= " AND V.PLAZAS_TOTALES >= :plazas";
         }
 
         $stmt = $pdo->prepare($filtro_texto);
