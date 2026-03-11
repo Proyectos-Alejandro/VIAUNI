@@ -1,4 +1,4 @@
-BLABLAX - Carpooling Universitario
+VIAUNI - Carpooling Universitario
 
 Proyecto Multimodular - 1º ASIR - UAX FP (Curso 2025-2026) 
 
