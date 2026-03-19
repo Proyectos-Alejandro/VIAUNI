@@ -1,6 +1,8 @@
 <?php
 require_once '../config/db.php';
 
+    $stmtlogo = $pdo->query("SELECT logo, nombre FROM empresa LIMIT 1"); 
+    $empresa = $stmtlogo->fetch();
 
     $stmtUsuarios = $pdo->query("SELECT COUNT(*) FROM usuario");
     $numUsuarios = $stmtUsuarios->fetchColumn();
@@ -14,7 +16,17 @@ require_once '../config/db.php';
 // UN CONTEO DE LAS ESTADISTICAS PRINCIPALES DE LA PAGINA Y LUEGO MOSTRARLAS //
 ?>
 
-<section id="estadisticas" class="seccion_estadisticas">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESTADISTICAS</title>
+    <link rel="stylesheet" href="../assets/css/style_estadisticas.css">
+    
+</head>
+<body>
+    <section id="estadisticas" class="seccion_estadisticas">
     <div class="contenido_estadisticas">
         
         <h2 class="titulo_seccion">NUESTRO IMPACTO EN LA UAX</h2>
@@ -25,13 +37,13 @@ require_once '../config/db.php';
             <article class="tarjeta_dato">
                 <div class="numero_grande"><?= $numUsuarios ?></div>
                 <h3>USUARIOS</h3>
-                <p>Confían en BLABLAX</p>
+                <p>Confían en <?=$empresa['nombre']?></p>
             </article>
 
             <article class="tarjeta_dato">
                 <div class="numero_grande"><?= $numViajes ?></div>
                 <h3>CONDUCTORES</h3>
-                <p>Han publicado ruta</p>
+                <p>Han publicado una ruta</p>
             </article>
 
             <article class="tarjeta_dato">
@@ -42,4 +54,7 @@ require_once '../config/db.php';
 
         </div>
     </div>
-</section>
+    </section>
+</body>
+</html>
+

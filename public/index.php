@@ -22,15 +22,15 @@ if (!isset($_SESSION['user_id'])) {
     <?php include '../includes/menu.php'; ?>
     <hr id="home">
     <?php include '../includes/header.php'; ?>
-    <hr id="buscarviaje">
+    <hr id="buscarviaje" class="separador">
     <?php include '../includes/buscarviaje.php'; ?>
-    <hr id="estadisticas">
+    <hr id="estadisticas" class="separador">
     <?php include '../includes/estadisticas.php'; ?>
-    <hr id="mas_info">
+    <hr id="mas_info" class="separador">
     <?php include '../includes/bloque_informacion.php'; ?>
-    <hr id="publicarviaje">
+    <hr id="publicarviaje" class="separador">
     <?php include '../includes/publicarviaje.php'; ?>
-    <hr id="formulario">
+    <hr id="formulario" class="separador">
     <?php include '../includes/formulario.php'; ?>
     <hr>
     <?php include '../includes/footer.php'; ?>

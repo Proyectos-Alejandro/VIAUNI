@@ -27,6 +27,7 @@
 </head>
 <body>
 
+<nav class="navperfil">
 
 <div class="menu_container">
         <div class="logo">
@@ -58,28 +59,32 @@
 
         <div class="perfil">
 
-                <img src="../assets/img/perfilusuario/<?=$perfilusuario['foto']?>" alt="<?=$perfilusuario['nombre']?>" height="50" width="50">
+                        
+                        <input type="checkbox" id="menu-toggle" class="menu-checkbox">
+                        <label for="menu-toggle">
+                            <img src="../assets/img/perfilusuario/<?=$perfilusuario['foto']?>" alt="<?=$perfilusuario['nombre']?>" class="perfilfoto">
+                        </label>
+                        
+                        <div class="submenu">
+                                <ul>
+                                        <?php if (count($menuusuario) > 0): ?>
+                                                <?php foreach ($menuusuario as $submenu): ?>
+                                                <li>
+                                                        <a href="<?= $submenu['SECCION'] ?>"><?= strtoupper($submenu['OPCION']) ?></a>
+                                                </li>
+                                        <?php endforeach; ?>
+                                        <?php else: ?>
+                                                <li>
+                                                        <a href="#buscar">MENÚ VACÍO</a>
+                                                </li>
+                                        <?php endif; ?>
+                                </ul>
 
-                <div class="submenu">
-                        <ul>
-                                <?php if (count($menuusuario) > 0): ?>
-                                        <?php foreach ($menuusuario as $submenu): ?>
-                                        <li>
-                                                <a href="<?= $submenu['SECCION'] ?>"><?= strtoupper($submenu['OPCION']) ?></a>
-                                        </li>
-                                <?php endforeach; ?>
-                                <?php else: ?>
-                                        <li>
-                                                <a href="#buscar">MENÚ VACÍO</a>
-                                        </li>
-                                <?php endif; ?>
-                        </ul>
-
-                </div>
-
+                        </div>
         </div>
 
 </div>
-
+</nav>
+    <script src="../assets/js/menu_animado.js"></script>  
 </body>
 </html>

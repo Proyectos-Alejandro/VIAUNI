@@ -26,7 +26,7 @@ $fotoheader= $stmt->fetchAll();
         <div class="header">
             <?php foreach ($fotoheader as $fotoenseñar): ?>
                 <div class="fotoheader">
-                    <img src="../assets/img/fotoheader/<?= $fotoenseñar['url'] ?>" alt="<?= $fotoenseñar['descripcion'] ?>" width="1500" height="700">
+                    <img src="../assets/img/fotoheader/<?= $fotoenseñar['url'] ?>" alt="<?= $fotoenseñar['descripcion'] ?>" width="100%" height="700">
                 </div>
             <?php endforeach; ?>
         </div>

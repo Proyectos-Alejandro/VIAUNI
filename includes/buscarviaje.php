@@ -1,7 +1,6 @@
 <?php 
     require_once '../config/db.php';
 
-
     $stmt = $pdo->query("SELECT U.NOMBRE, U.APELLIDO1, U.APELLIDO2, U.COCHE, U.FOTO, C1.PAIS AS PAIS_ORIGEN,C1.PROVINCIA AS PROVINCIA_ORIGEN,C1.MUNICIPIO AS MUNICIPIO_ORIGEN,C1.CP AS CP_ORIGEN, C2.PAIS AS PAIS_DESTINO, C2.PROVINCIA AS PROVINCIA_DESTINO,C2.MUNICIPIO AS MUNICIPIO_DESTINO,C2.CP AS CP_DESTINO, V.FECHA_HORA, V.PLAZAS_TOTALES, V.PRECIO, V.DESCRIPCION_EXTRA FROM VIAJES V INNER JOIN USUARIO U ON U.ID = V.CONDUCTOR_ID INNER JOIN CIUDADES C1 ON C1.ID = V.ID_ORIGEN INNER JOIN CIUDADES C2 ON C2.ID = V.ID_DESTINO;");
     $infoviaje = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -21,173 +20,95 @@
     $viajes_cp = $opcionesviaje_cp->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
+<link rel="stylesheet" href="../assets/css/style_buscarviaje.css">
 
-<div class="filtros_buscar">
-
-    <form action="index.php"> <!-- FORMULARIO PARA BUSCAR VIAJES -->
-        <fieldset class="fieldset_buscar">
-            <legend>BUSCA TU VIAJE</legend>
-
-                <?php if (count($viajes_pais) > 0): ?> <div class="contenedor_origen_pais"> <!-- FILTRO ORIGEN PAIS -->
-                        <input list="filtro_origen_pais" name="filtro_origen_pais" placeholder="PAIS ORIGEN">
-                        <datalist id="filtro_origen_pais"> <?php foreach ($viajes_pais as $viaje_pais): ?>
-                                <option value="<?php echo $viaje_pais['PAIS']; ?>">
-                            <?php endforeach; ?>
-                        </datalist>  
-                    </div>
-                <?php else: ?>
-                    <div class="contenedor_origen_pais">
-                            <input list="filtro_origen_pais" name="filtro_origen_pais" placeholder="PAIS ORIGEN">
-                            <datalist id="filtro_origen_pais">
-                            <option value="">
-                            </datalist>  
-                    </div>
-                <?php endif; ?>
-
-<!-- ------------------------------------------------------------------------------------------------------------------------------- -->
-  
-                <?php if (count($viajes_provincia) > 0): ?> <div class="contenedor_origen"> <!-- FILTRO ORIGEN PROVINCIA -->
-                        <input list="filtro_origen_provincia" name="filtro_origen_provincia" placeholder="PROVINCIA ORIGEN">
-                        <datalist id="filtro_origen_provincia"> <?php foreach ($viajes_provincia as $viaje_provincia): ?>
-                                <option value="<?php echo $viaje_provincia['PROVINCIA']; ?>">
-                            <?php endforeach; ?>
-                        </datalist>  
-                    </div>
-                <?php else: ?>
-                    <div class="contenedor_origen">
-                            <input list="filtro_origen_provincia" name="filtro_origen_provincia" placeholder="PROVINCIA ORIGEN">
-                            <datalist id="filtro_origen_provincia">
-                            <option value="">
-                            </datalist>  
-                    </div>
-                <?php endif; ?>  
-
-<!-- ------------------------------------------------------------------------------------------------------------------------------- -->
-
-                <?php if (count($viajes_municipio) > 0): ?> <div class="contenedor_origen"> <!-- FILTRO ORIGEN MUNICIPIO -->
-                        <input list="filtro_origen_municipio" name="filtro_origen_municipio" placeholder="MUNICIPIO ORIGEN">
-                        <datalist id="filtro_origen_municipio"> <?php foreach ($viajes_municipio as $viaje_municipio): ?>
-                                <option value="<?php echo $viaje_municipio['MUNICIPIO']; ?>">
-                            <?php endforeach; ?>
-                        </datalist>  
-                    </div>
-                <?php else: ?>
-                    <div class="contenedor_origen">
-                            <input list="filtro_origen_municipio" name="filtro_origen_municipio" placeholder="MUNICIPIO ORIGEN">
-                            <datalist id="filtro_origen_municipio">
-                            <option value="">
-                            </datalist>  
-                    </div>
-                <?php endif; ?>  
-
-<!-- ------------------------------------------------------------------------------------------------------------------------------- -->
-
-                <?php if (count($viajes_cp) > 0): ?> <div class="contenedor_origen"> <!-- FILTRO ORIGEN CP -->
-                        <input list="filtro_origen_cp" name="filtro_origen_cp" placeholder="CP ORIGEN">
-                        <datalist id="filtro_origen_cp"> <?php foreach ($viajes_cp as $viaje_cp): ?>
-                                <option value="<?php echo $viaje_cp['CP']; ?>">
-                            <?php endforeach; ?>
-                        </datalist>  
-                    </div>
-                <?php else: ?>
-                    <div class="contenedor_origen">
-                            <input list="filtro_origen_cp" name="filtro_origen_cp" placeholder="CP ORIGEN">
-                            <datalist id="filtro_origen_cp">
-                            <option value="">
-                            </datalist>  
-                    </div>
-                <?php endif; ?>  
-
-<!-- ------------------------------------------------------------------------------------------------------------------------------- -->
-
-                <?php if(count($viajes_pais) > 0): ?> <div class="contenedor_destino"> <!-- FILTRO DESTINO PAIS -->
-                        <input list="filtro_destino_pais" name="filtro_destino_pais" placeholder="PAIS DESTINO">
-                        <datalist id="filtro_destino_pais">
-                            <?php foreach ($viajes_pais as $viaje_pais): ?>
-                                <option value="<?php echo $viaje_pais['PAIS']; ?>">
-                            <?php endforeach; ?>
-                        </datalist>
-                    </div>
-                <?php else: ?>
-                    <div class="contenedor_destino">
-                            <input list="filtro_destino_pais" name="filtro_destino_pais" placeholder="PAIS DESTINO">
-                            <datalist id="filtro_destino_pais">
-                            <option value="">
-                            </datalist>  
-                    </div>
-                <?php endif; ?>  
-
-<!-- ------------------------------------------------------------------------------------------------------------------------------- -->
-
-                <?php if(count($viajes_provincia) > 0): ?> <div class="contenedor_destino"> <!-- FILTRO DESTINO PROVINCIA -->
-                        <input list="filtro_destino_provincia" name="filtro_destino_provincia" placeholder="PROVINCIA DESTINO">
-                        <datalist id="filtro_destino_provincia">
-                            <?php foreach ($viajes_provincia as $viaje_provincia): ?>
-                                <option value="<?php echo $viaje_provincia['PROVINCIA']; ?>">
-                            <?php endforeach; ?>
-                        </datalist>
-                    </div>
-                <?php else: ?>
-                    <div class="contenedor_destino">
-                            <input list="filtro_destino_provincia" name="filtro_destino_provincia" placeholder="PROVINCIA DESTINO">
-                            <datalist id="filtro_destino_provincia">
-                            <option value="">
-                            </datalist>  
-                    </div>
-                <?php endif; ?>  
-                
-<!------------------------------------------------------------------------------------------------------------------------------- -->
-
-                <?php if(count($viajes_municipio) > 0): ?> <div class="contenedor_destino"> <!-- FILTRO DESTINO MUNICIPIO -->
-                        <input list="filtro_destino_municipio" name="filtro_destino_municipio" placeholder="MUNICIPIO DESTINO">
-                        <datalist id="filtro_destino_municipio">
-                            <?php foreach ($viajes_municipio as $viaje_municipio): ?>
-                                <option value="<?php echo $viaje_municipio['MUNICIPIO']; ?>">
-                            <?php endforeach; ?>
-                        </datalist>
-                    </div>
-                <?php else: ?>
-                    <div class="contenedor_destino">
-                            <input list="filtro_destino_municipio" name="filtro_destino_municipio" placeholder="MUNICIPIO DESTINO">
-                            <datalist id="filtro_destino_municipio">
-                            <option value="">
-                            </datalist>  
-                    </div>
-                <?php endif; ?>  
-
-<!------------------------------------------------------------------------------------------------------------------------------- -->
-
-                <?php if(count($viajes_cp) > 0): ?> <div class="contenedor_destino"> <!-- FILTRO DESTINO CP -->
-                        <input list="filtro_destino_cp" name="filtro_destino_cp" placeholder="CP DESTINO">
-                        <datalist id="filtro_destino_cp">
-                            <?php foreach ($viajes as $viaje): ?>
-                                <option value="<?php echo $viaje['CP']; ?>">
-                            <?php endforeach; ?>
-                        </datalist>
-                    </div>
-                <?php else: ?>
-                    <div class="contenedor_destino">
-                            <input list="filtro_destino_cp" name="filtro_destino_cp" placeholder="CP DESTINO">
-                            <datalist id="filtro_destino_cp">
-                            <option value="">
-                            </datalist>  
-                    </div>
-                <?php endif; ?>  
-
-<!------------------------------------------------------------------------------------------------------------------------------- -->
+<div class="buscar_wrapper">
+    <div class="buscar_card">
+        <form action="index.php" method="GET" class="form_buscar">
+            <h2 class="titulo_buscar">Encuentra tu viaje ideal</h2>
             
-            <input type="date" name="filtro_fecha">
+            <div class="grid_buscar">
+                <div class="columna_buscar">
+                    <span class="etiqueta_buscar">Origen</span>
+                    
+                    <?php if (count($viajes_pais) > 0): ?> 
+                        <input list="filtro_origen_pais" name="filtro_origen_pais" class="input_buscar" placeholder="País Origen">
+                        <datalist id="filtro_origen_pais"><?php foreach ($viajes_pais as $viaje_pais): ?><option value="<?php echo $viaje_pais['PAIS']; ?>"><?php endforeach; ?></datalist>
+                    <?php else: ?>
+                        <input list="filtro_origen_pais" name="filtro_origen_pais" class="input_buscar" placeholder="País Origen"><datalist id="filtro_origen_pais"><option value=""></datalist>
+                    <?php endif; ?>
 
-            <input type="text" name="filtro_plazas" placeholder="Nº de Plazas">
+                    <?php if (count($viajes_provincia) > 0): ?> 
+                        <input list="filtro_origen_provincia" name="filtro_origen_provincia" class="input_buscar" placeholder="Provincia Origen">
+                        <datalist id="filtro_origen_provincia"><?php foreach ($viajes_provincia as $viaje_provincia): ?><option value="<?php echo $viaje_provincia['PROVINCIA']; ?>"><?php endforeach; ?></datalist>
+                    <?php else: ?>
+                        <input list="filtro_origen_provincia" name="filtro_origen_provincia" class="input_buscar" placeholder="Provincia Origen"><datalist id="filtro_origen_provincia"><option value=""></datalist>
+                    <?php endif; ?>
 
-            <button type="submit">BUSCAR</button>
-        </fieldset>
-        
-    </form>
+                    <?php if (count($viajes_municipio) > 0): ?> 
+                        <input list="filtro_origen_municipio" name="filtro_origen_municipio" class="input_buscar" placeholder="Municipio Origen">
+                        <datalist id="filtro_origen_municipio"><?php foreach ($viajes_municipio as $viaje_municipio): ?><option value="<?php echo $viaje_municipio['MUNICIPIO']; ?>"><?php endforeach; ?></datalist>
+                    <?php else: ?>
+                        <input list="filtro_origen_municipio" name="filtro_origen_municipio" class="input_buscar" placeholder="Municipio Origen"><datalist id="filtro_origen_municipio"><option value=""></datalist>
+                    <?php endif; ?>
+
+                    <?php if (count($viajes_cp) > 0): ?> 
+                        <input list="filtro_origen_cp" name="filtro_origen_cp" class="input_buscar" placeholder="CP Origen">
+                        <datalist id="filtro_origen_cp"><?php foreach ($viajes_cp as $viaje_cp): ?><option value="<?php echo $viaje_cp['CP']; ?>"><?php endforeach; ?></datalist>
+                    <?php else: ?>
+                        <input list="filtro_origen_cp" name="filtro_origen_cp" class="input_buscar" placeholder="CP Origen"><datalist id="filtro_origen_cp"><option value=""></datalist>
+                    <?php endif; ?>
+                </div>
+
+                <div class="separador_buscar">
+                    <span>&#10142;</span>
+                </div>
+
+                <div class="columna_buscar">
+                    <span class="etiqueta_buscar">Destino</span>
+                    
+                    <?php if(count($viajes_pais) > 0): ?> 
+                        <input list="filtro_destino_pais" name="filtro_destino_pais" class="input_buscar" placeholder="País Destino">
+                        <datalist id="filtro_destino_pais"><?php foreach ($viajes_pais as $viaje_pais): ?><option value="<?php echo $viaje_pais['PAIS']; ?>"><?php endforeach; ?></datalist>
+                    <?php else: ?>
+                        <input list="filtro_destino_pais" name="filtro_destino_pais" class="input_buscar" placeholder="País Destino"><datalist id="filtro_destino_pais"><option value=""></datalist>
+                    <?php endif; ?>
+
+                    <?php if(count($viajes_provincia) > 0): ?> 
+                        <input list="filtro_destino_provincia" name="filtro_destino_provincia" class="input_buscar" placeholder="Provincia Destino">
+                        <datalist id="filtro_destino_provincia"><?php foreach ($viajes_provincia as $viaje_provincia): ?><option value="<?php echo $viaje_provincia['PROVINCIA']; ?>"><?php endforeach; ?></datalist>
+                    <?php else: ?>
+                        <input list="filtro_destino_provincia" name="filtro_destino_provincia" class="input_buscar" placeholder="Provincia Destino"><datalist id="filtro_destino_provincia"><option value=""></datalist>
+                    <?php endif; ?>
+
+                    <?php if(count($viajes_municipio) > 0): ?> 
+                        <input list="filtro_destino_municipio" name="filtro_destino_municipio" class="input_buscar" placeholder="Municipio Destino">
+                        <datalist id="filtro_destino_municipio"><?php foreach ($viajes_municipio as $viaje_municipio): ?><option value="<?php echo $viaje_municipio['MUNICIPIO']; ?>"><?php endforeach; ?></datalist>
+                    <?php else: ?>
+                        <input list="filtro_destino_municipio" name="filtro_destino_municipio" class="input_buscar" placeholder="Municipio Destino"><datalist id="filtro_destino_municipio"><option value=""></datalist>
+                    <?php endif; ?>
+
+                    <?php if(count($viajes_cp) > 0): ?> 
+                        <input list="filtro_destino_cp" name="filtro_destino_cp" class="input_buscar" placeholder="CP Destino">
+                        <datalist id="filtro_destino_cp"><?php foreach ($viajes as $viaje): ?><option value="<?php echo $viaje['CP']; ?>"><?php endforeach; ?></datalist>
+                    <?php else: ?>
+                        <input list="filtro_destino_cp" name="filtro_destino_cp" class="input_buscar" placeholder="CP Destino"><datalist id="filtro_destino_cp"><option value=""></datalist>
+                    <?php endif; ?>
+                </div>
+
+                <div class="columna_buscar detalles_buscar">
+                    <span class="etiqueta_buscar">Detalles</span>
+                    <input type="date" name="filtro_fecha" class="input_buscar">
+                    <input type="text" name="filtro_plazas" class="input_buscar" placeholder="Nº de Plazas">
+                    <button type="submit" class="btn_buscar">BUSCAR</button>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
 
 
-<div class="filtro_resultado"> <!-- ESTO VA A BUSCAR TODOS LOS VIAJES DISPONIBLES PARA TENERLO PREPARADO PARA CUANDO ALGUIEN BUSQUE ALGO -->
+<div class="filtro_resultado"> 
 
     <?php 
         $filtro_origen_pais = $_GET['filtro_origen_pais'] ?? '';
@@ -201,117 +122,120 @@
         $filtro_fecha = $_GET['filtro_fecha'] ?? '';
         $filtro_plazas = $_GET['filtro_plazas'] ?? '';
 
-        
         $filtro_viaje = "SELECT U.NOMBRE, U.APELLIDO1, U.APELLIDO2, U.COCHE, U.FOTO, C1.PAIS AS PAIS_ORIGEN,C1.PROVINCIA AS PROVINCIA_ORIGEN,C1.MUNICIPIO AS MUNICIPIO_ORIGEN,C1.CP AS CP_ORIGEN, C2.PAIS AS PAIS_DESTINO, C2.PROVINCIA AS PROVINCIA_DESTINO,C2.MUNICIPIO AS MUNICIPIO_DESTINO,C2.CP AS CP_DESTINO, V.FECHA_HORA, V.PLAZAS_TOTALES, V.PRECIO, V.DESCRIPCION_EXTRA FROM VIAJES V INNER JOIN USUARIO U ON U.ID = V.CONDUCTOR_ID INNER JOIN CIUDADES C1 ON C1.ID = V.ID_ORIGEN INNER JOIN CIUDADES C2 ON C2.ID = V.ID_DESTINO WHERE 1=1";
 
-        if (!empty($filtro_origen_pais)) {
-            $filtro_viaje .= " AND C1.PAIS LIKE :PAIS_ORIGEN";
-        }
-        if (!empty($filtro_origen_provincia)) {
-            $filtro_viaje .= " AND C1.PROVINCIA LIKE :PROVINCIA_ORIGEN";
-        }
-        if (!empty($filtro_origen_municipio)) {
-            $filtro_viaje .= " AND C1.MUNICIPIO LIKE :MUNICIPIO_ORIGEN"; 
-        }
-        if (!empty($filtro_origen_cp)) {
-            $filtro_viaje .= " AND C1.CP LIKE :CP_ORIGEN";
-        }
-        if (!empty($filtro_destino_pais)) {
-            $filtro_viaje .= " AND C2.PAIS LIKE :PAIS_DESTINO";
-        }
-        if (!empty($filtro_destino_provincia)) {
-            $filtro_viaje .= " AND C2.PROVINCIA LIKE :PROVINCIA_DESTINO";
-        }
-        if (!empty($filtro_destino_municipio)) {
-            $filtro_viaje .= " AND C2.MUNICIPIO LIKE :MUNICIPIO_DESTINO";
-        }
-        if (!empty($filtro_destino_cp)) {
-            $filtro_viaje .= " AND C2.CP LIKE :CP_DESTINO";
-        }
-        if (!empty($filtro_fecha)) {
-            $filtro_viaje .= " AND DATE(V.FECHA_HORA) = :fecha";
-        }
-        if (!empty($filtro_plazas)) {
-            $filtro_viaje .= " AND V.PLAZAS_TOTALES = :plazas";
-        }
+        if (!empty($filtro_origen_pais)) { $filtro_viaje .= " AND C1.PAIS LIKE :PAIS_ORIGEN"; }
+        if (!empty($filtro_origen_provincia)) { $filtro_viaje .= " AND C1.PROVINCIA LIKE :PROVINCIA_ORIGEN"; }
+        if (!empty($filtro_origen_municipio)) { $filtro_viaje .= " AND C1.MUNICIPIO LIKE :MUNICIPIO_ORIGEN"; }
+        if (!empty($filtro_origen_cp)) { $filtro_viaje .= " AND C1.CP LIKE :CP_ORIGEN"; }
+        if (!empty($filtro_destino_pais)) { $filtro_viaje .= " AND C2.PAIS LIKE :PAIS_DESTINO"; }
+        if (!empty($filtro_destino_provincia)) { $filtro_viaje .= " AND C2.PROVINCIA LIKE :PROVINCIA_DESTINO"; }
+        if (!empty($filtro_destino_municipio)) { $filtro_viaje .= " AND C2.MUNICIPIO LIKE :MUNICIPIO_DESTINO"; }
+        if (!empty($filtro_destino_cp)) { $filtro_viaje .= " AND C2.CP LIKE :CP_DESTINO"; }
+        if (!empty($filtro_fecha)) { $filtro_viaje .= " AND DATE(V.FECHA_HORA) = :fecha"; }
+        if (!empty($filtro_plazas)) { $filtro_viaje .= " AND V.PLAZAS_TOTALES = :plazas"; }
 
         $stmt = $pdo->prepare($filtro_viaje);
 
-        if (!empty($filtro_origen_pais)) {
-            $stmt->bindValue(':PAIS_ORIGEN', '%' . $filtro_origen_pais . '%');
-        }
-        if (!empty($filtro_origen_provincia)) {
-            $stmt->bindValue(':PROVINCIA_ORIGEN', '%' . $filtro_origen_provincia . '%');
-        }
-        if (!empty($filtro_origen_municipio)) {
-            $stmt->bindValue(':MUNICIPIO_ORIGEN', '%' . $filtro_origen_municipio . '%');
-        }
-        if (!empty($filtro_origen_cp)) {
-            $stmt->bindValue(':CP_ORIGEN', '%' . $filtro_origen_cp . '%');
-        }
-        if (!empty($filtro_destino_pais)) {
-            $stmt->bindValue(':PAIS_DESTINO', '%' . $filtro_destino_pais . '%');
-        }
-        if (!empty($filtro_destino_provincia)) {
-            $stmt->bindValue(':PROVINCIA_DESTINO', '%' . $filtro_destino_provincia . '%');
-        }
-        if (!empty($filtro_destino_municipio)) {
-            $stmt->bindValue(':MUNICIPIO_DESTINO', '%' . $filtro_destino_municipio . '%');
-        }
-        if (!empty($filtro_destino_cp)) {
-            $stmt->bindValue(':CP_DESTINO', '%' . $filtro_destino_cp . '%');
-        }
-        if (!empty($filtro_fecha)) {
-            $stmt->bindValue(':fecha', $filtro_fecha);
-        }
-        if (!empty($filtro_plazas)) {
-            $stmt->bindValue(':plazas', (int)$filtro_plazas);
-        }
+        if (!empty($filtro_origen_pais)) { $stmt->bindValue(':PAIS_ORIGEN', '%' . $filtro_origen_pais . '%'); }
+        if (!empty($filtro_origen_provincia)) { $stmt->bindValue(':PROVINCIA_ORIGEN', '%' . $filtro_origen_provincia . '%'); }
+        if (!empty($filtro_origen_municipio)) { $stmt->bindValue(':MUNICIPIO_ORIGEN', '%' . $filtro_origen_municipio . '%'); }
+        if (!empty($filtro_origen_cp)) { $stmt->bindValue(':CP_ORIGEN', '%' . $filtro_origen_cp . '%'); }
+        if (!empty($filtro_destino_pais)) { $stmt->bindValue(':PAIS_DESTINO', '%' . $filtro_destino_pais . '%'); }
+        if (!empty($filtro_destino_provincia)) { $stmt->bindValue(':PROVINCIA_DESTINO', '%' . $filtro_destino_provincia . '%'); }
+        if (!empty($filtro_destino_municipio)) { $stmt->bindValue(':MUNICIPIO_DESTINO', '%' . $filtro_destino_municipio . '%'); }
+        if (!empty($filtro_destino_cp)) { $stmt->bindValue(':CP_DESTINO', '%' . $filtro_destino_cp . '%'); }
+        if (!empty($filtro_fecha)) { $stmt->bindValue(':fecha', $filtro_fecha); }
+        if (!empty($filtro_plazas)) { $stmt->bindValue(':plazas', (int)$filtro_plazas); }
 
         $stmt->execute();
-        $infoviaje = $stmt->fetchAll(PDO::FETCH_ASSOC); // GUARDA TODO LO DE ESTA CONSULTA EN LA VARIABLE INFOVIAJE //
+        $infoviaje = $stmt->fetchAll(PDO::FETCH_ASSOC); 
     ?>
 
-    <?php if (count($infoviaje) > 0): ?> <!-- SI HAY VIAJES DIPONIBLES, LOS MUESTRA, SI NO HAY DA UN MENSAJE Y MUESTRA TODOS LOS VIAJES -->
-    <div class="contenedor_viajes">
+    <?php if (count($infoviaje) > 0): ?> 
+    <div class="contenedor_viajes_grid">
         <?php foreach ($infoviaje as $viaje): ?>
-            <div class="viaje">
-                <h3>Viaja con <?php echo ($viaje['NOMBRE'] . ' ' . $viaje['APELLIDO1'] . ' ' . $viaje['APELLIDO2']); ?></h3>
-                <img src="<?php echo '../assets/img/perfilusuario/' . $viaje['FOTO']; ?>" alt="Foto <?php echo $viaje['NOMBRE']; ?>" height="50" width="50">
-                <p>Origen: <?php echo ($viaje['PAIS_ORIGEN'] . ', ' . $viaje['PROVINCIA_ORIGEN'] . ', ' . $viaje['MUNICIPIO_ORIGEN'] . ', ' . $viaje['CP_ORIGEN']); ?></p>
-                <p>Destino: <?php echo ($viaje['PAIS_DESTINO'] . ', ' . $viaje['PROVINCIA_DESTINO'] . ', ' . $viaje['MUNICIPIO_DESTINO'] . ', ' . $viaje['CP_DESTINO']); ?></p>
-                <p>Fecha y hora: <?php echo $viaje['FECHA_HORA']; ?></p>
-                <p>Plazas totales: <?php echo $viaje['PLAZAS_TOTALES']; ?></p>
-                <p>Precio: <?php echo $viaje['PRECIO']; ?></p>
-                <p>Descripción extra: <?php echo $viaje['DESCRIPCION_EXTRA']; ?></p>
-                <button type="button">Reservar</button>
+            <div class="tarjeta_viaje">
+                <div class="tv_cabecera">
+                    <img src="<?php echo '../assets/img/perfilusuario/' . ($viaje['FOTO'] ? $viaje['FOTO'] : 'default.png'); ?>" alt="Foto" class="tv_foto">
+                    <div class="tv_info_conductor">
+                        <h4><?php echo ($viaje['NOMBRE'] . ' ' . $viaje['APELLIDO1'] . ' ' . $viaje['APELLIDO2']); ?></h4>
+                    </div>
+                </div>
+
+                <div class="tv_cuerpo">
+                    <div class="tv_ruta">
+                        <div class="punto origen"><strong>De:</strong> <?php echo ($viaje['MUNICIPIO_ORIGEN'] . ', ' . $viaje['PROVINCIA_ORIGEN']); ?></div>
+                        <div class="linea"></div>
+                        <div class="punto destino"><strong>A:</strong> <?php echo ($viaje['MUNICIPIO_DESTINO'] . ', ' . $viaje['PROVINCIA_DESTINO']); ?></div>
+                    </div>
+                    
+                    <div class="tv_detalles_extra">
+                        <p><?php echo $viaje['FECHA_HORA']; ?></p>
+                        <?php if(!empty($viaje['DESCRIPCION_EXTRA'])): ?>
+                            <p class="nota_extra">"<?php echo $viaje['DESCRIPCION_EXTRA']; ?>"</p>
+                        <?php endif; ?>
+                    </div>
+                </div>
+
+                <div class="tv_pie">
+                    <div class="tv_precio_plazas">
+                        <span class="precio"><?php echo $viaje['PRECIO']; ?>€</span>
+                        <span class="plazas"><?php echo $viaje['PLAZAS_TOTALES']; ?> plazas</span>
+                    </div>
+                    <button type="button" class="btn_reservar">Reservar</button>
+                </div>
             </div>
         <?php endforeach; ?>
+    </div>
+
     <?php else: ?>
 
-        <p>No hay viajes disponibles con estos filtros</p>
+        <div class="alerta_sin_viajes">No hay viajes disponibles con estos filtros. Mostrando otros viajes:</div>
 
-        <?php $error_busqueda = "SELECT U.NOMBRE, U.APELLIDO1, U.APELLIDO2, U.COCHE, U.FOTO, C1.PAIS AS PAIS_ORIGEN,C1.PROVINCIA AS PROVINCIA_ORIGEN,C1.MUNICIPIO AS MUNICIPIO_ORIGEN,C1.CP AS CP_ORIGEN, C2.PAIS AS PAIS_DESTINO, C2.PROVINCIA AS PROVINCIA_DESTINO,C2.MUNICIPIO AS MUNICIPIO_DESTINO,C2.CP AS CP_DESTINO, V.FECHA_HORA, V.PLAZAS_TOTALES, V.PRECIO, V.DESCRIPCION_EXTRA FROM VIAJES V INNER JOIN USUARIO U ON U.ID = V.CONDUCTOR_ID INNER JOIN CIUDADES C1 ON C1.ID = V.ID_ORIGEN INNER JOIN CIUDADES C2 ON C2.ID = V.ID_DESTINO WHERE 1=1;" ?>
-        <?php $stmt = $pdo->prepare($error_busqueda);
+        <?php 
+        $error_busqueda = "SELECT U.NOMBRE, U.APELLIDO1, U.APELLIDO2, U.COCHE, U.FOTO, C1.PAIS AS PAIS_ORIGEN,C1.PROVINCIA AS PROVINCIA_ORIGEN,C1.MUNICIPIO AS MUNICIPIO_ORIGEN,C1.CP AS CP_ORIGEN, C2.PAIS AS PAIS_DESTINO, C2.PROVINCIA AS PROVINCIA_DESTINO,C2.MUNICIPIO AS MUNICIPIO_DESTINO,C2.CP AS CP_DESTINO, V.FECHA_HORA, V.PLAZAS_TOTALES, V.PRECIO, V.DESCRIPCION_EXTRA FROM VIAJES V INNER JOIN USUARIO U ON U.ID = V.CONDUCTOR_ID INNER JOIN CIUDADES C1 ON C1.ID = V.ID_ORIGEN INNER JOIN CIUDADES C2 ON C2.ID = V.ID_DESTINO WHERE 1=1;";
+        $stmt = $pdo->prepare($error_busqueda);
         $stmt->execute();
+        $error_viajes = $stmt->fetchAll(PDO::FETCH_ASSOC); 
+        ?>
 
-        $error_viajes = $stmt->fetchAll(PDO::FETCH_ASSOC); ?>
-
+        <div class="contenedor_viajes_grid">
         <?php foreach ($error_viajes as $viaje): ?>
-            <div class="viaje">
-                <h3>Viaja con <?php echo ($viaje['NOMBRE'] . ' ' . $viaje['APELLIDO1'] . ' ' . $viaje['APELLIDO2']); ?></h3>
-                <img src="<?php echo '../assets/img/perfilusuario/' . $viaje['FOTO']; ?>" alt="Foto <?php echo $viaje['NOMBRE']; ?>" height="50" width="50">
-                <p>Origen: <?php echo ($viaje['PAIS_ORIGEN'] . ', ' . $viaje['PROVINCIA_ORIGEN'] . ', ' . $viaje['MUNICIPIO_ORIGEN'] . ', ' . $viaje['CP_ORIGEN']); ?></p>
-                <p>Destino: <?php echo ($viaje['PAIS_DESTINO'] . ', ' . $viaje['PROVINCIA_DESTINO'] . ', ' . $viaje['MUNICIPIO_DESTINO'] . ', ' . $viaje['CP_DESTINO']); ?></p>
-                <p>Fecha y hora: <?php echo $viaje['FECHA_HORA']; ?></p>
-                <p>Plazas totales: <?php echo $viaje['PLAZAS_TOTALES']; ?></p>
-                <p>Precio: <?php echo $viaje['PRECIO']; ?></p>
-                <p>Descripción extra: <?php echo $viaje['DESCRIPCION_EXTRA']; ?></p>
-                <button type="button">Reservar</button>
-            </div>
+            <div class="tarjeta_viaje">
+                <div class="tv_cabecera">
+                    <img src="<?php echo '../assets/img/perfilusuario/' . ($viaje['FOTO'] ? $viaje['FOTO'] : 'default.png'); ?>" alt="Foto" class="tv_foto">
+                    <div class="tv_info_conductor">
+                        <h4><?php echo ($viaje['NOMBRE'] . ' ' . $viaje['APELLIDO1'] . ' ' . $viaje['APELLIDO2']); ?></h4>
+                    </div>
+                </div>
 
+                <div class="tv_cuerpo">
+                    <div class="tv_ruta">
+                        <div class="punto origen"><strong>De:</strong> <?php echo ($viaje['MUNICIPIO_ORIGEN'] . ', ' . $viaje['PROVINCIA_ORIGEN']); ?></div>
+                        <div class="linea"></div>
+                        <div class="punto destino"><strong>A:</strong> <?php echo ($viaje['MUNICIPIO_DESTINO'] . ', ' . $viaje['PROVINCIA_DESTINO']); ?></div>
+                    </div>
+                    
+                    <div class="tv_detalles_extra">
+                        <p><?php echo $viaje['FECHA_HORA']; ?></p>
+                        <?php if(!empty($viaje['DESCRIPCION_EXTRA'])): ?>
+                            <p class="nota_extra">"<?php echo $viaje['DESCRIPCION_EXTRA']; ?>"</p>
+                        <?php endif; ?>
+                    </div>
+                </div>
+
+                <div class="tv_pie">
+                    <div class="tv_precio_plazas">
+                        <span class="precio"><?php echo $viaje['PRECIO']; ?>€</span>
+                        <span class="plazas"><?php echo $viaje['PLAZAS_TOTALES']; ?> plazas</span>
+                    </div>
+                    <button type="button" class="btn_reservar">Reservar</button>
+                </div>
+            </div>
         <?php endforeach; ?>
+        </div>
+
     <?php endif; ?>
-    </div>
 
 </div>

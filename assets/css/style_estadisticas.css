@@ -1,0 +1,96 @@
+/* =========================================
+   SECCIÓN ESTADÍSTICAS
+   ========================================= */
+.seccion_estadisticas {
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.contenido_estadisticas {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Títulos de la sección */
+.titulo_seccion {
+    color: var(--color-primario);
+    font-size: 36px;
+    font-weight: 900;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.subtitulo {
+    color: #666;
+    font-size: 16px;
+    margin-bottom: 60px; /* Mucho espacio antes de las tarjetas */
+}
+
+/* Contenedor Grid/Flex para las tarjetas */
+.tabla_estadisticas {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    flex-wrap: wrap; /* Permite que bajen en móviles */
+}
+
+/* Tarjeta individual */
+.tarjeta_dato {
+    background-color: #ffffff;
+    flex: 1; /* Hacen que todas midan exactamente lo mismo */
+    min-width: 280px;
+    padding: 50px 20px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(69, 91, 114, 0.1);
+    border-bottom: 5px solid var(--color-terciario); /* Una línea de acento azul abajo */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efecto al pasar el ratón */
+.tarjeta_dato:hover {
+    transform: translateY(-10px); /* La tarjeta "flota" hacia arriba */
+    box-shadow: 0 15px 35px rgba(69, 91, 114, 0.15);
+}
+
+/* El numerazo */
+.numero_grande {
+    font-size: 65px;
+    font-weight: 900;
+    color: var(--color-terciario); /* Azul brillante para el dato principal */
+    margin-bottom: 15px;
+    line-height: 1;
+}
+
+/* Textos de la tarjeta */
+.tarjeta_dato h3 {
+    font-size: 18px;
+    color: var(--color-primario);
+    margin-bottom: 8px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.tarjeta_dato p {
+    font-size: 15px;
+    color: #777;
+    margin: 0;
+}
+
+/* =========================================
+   RESPONSIVO (MÓVILES)
+   ========================================= */
+@media screen and (max-width: 768px) {
+    .tabla_estadisticas {
+        flex-direction: column; /* Apila las 3 tarjetas en vertical */
+        gap: 25px;
+    }
+    
+    .titulo_seccion {
+        font-size: 28px;
+    }
+    
+    .numero_grande {
+        font-size: 55px;
+    }
+}

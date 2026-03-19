@@ -1,0 +1,226 @@
+:root {
+    --color-primario: #455B72; 
+    --color-secundario: #7B9CBF; 
+    --color-terciario: #1b5cb7;
+    --color-fondo: #D7D7D7; 
+    --color-texto: #333333;
+}
+
+.buscar_wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 60px 20px 20px;
+    background-color: var(--color-fondo);
+}
+
+.buscar_card {
+    background-color: #ffffff;
+    width: 100%;
+    max-width: 1200px;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(69, 91, 114, 0.15);
+}
+
+.titulo_buscar {
+    color: var(--color-primario);
+    font-size: 24px;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.grid_buscar {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 20px;
+}
+
+.columna_buscar {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.etiqueta_buscar {
+    font-size: 13px;
+    font-weight: bold;
+    color: var(--color-primario);
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+.input_buscar {
+    padding: 12px;
+    border: 1px solid #d1d1d1;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    transition: 0.3s;
+    background-color: #f9f9f9;
+}
+
+.separador_buscar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 30px; 
+}
+
+.detalles_buscar {
+    justify-content: flex-end;
+}
+
+.btn_buscar {
+    background-color: var(--color-terciario);
+    color: white;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: 0.3s;
+    font-size: 16px;
+}
+
+.btn_buscar:hover { background-color: #154a96; }
+
+.filtro_resultado {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.alerta_sin_viajes {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 15px 20px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 30px;
+    border: 1px solid #f5c6cb;
+}
+
+.contenedor_viajes_grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 25px;
+}
+
+.tarjeta_viaje {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #eaeaea;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.tarjeta_viaje:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.12);
+}
+
+.tv_cabecera {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #f0f0f0;
+    padding-bottom: 15px;
+}
+
+.tv_foto {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--color-secundario);
+}
+
+.tv_info_conductor h4 {
+    margin: 0 0 5px 0;
+    color: var(--color-primario);
+    font-size: 18px;
+}
+
+.tv_cuerpo {
+    flex-grow: 1; 
+    margin-bottom: 20px;
+}
+
+.punto {
+    font-size: 15px;
+    color: var(--color-texto);
+    margin: 8px 0;
+}
+
+.punto strong {
+    color: var(--color-primario);
+}
+
+.tv_detalles_extra {
+    margin-top: 15px;
+    font-size: 13px;
+    color: #555;
+}
+
+.nota_extra {
+    margin-top: 5px;
+    font-style: italic;
+    color: #888;
+}
+
+.tv_pie {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.tv_precio_plazas {
+    display: flex;
+    flex-direction: column;
+}
+
+.precio {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--color-terciario);
+}
+
+.plazas {
+    font-size: 12px;
+    color: #888;
+}
+
+.btn_reservar {
+    background-color: var(--color-primario);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px; 
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn_reservar:hover {
+    background-color: #324456;
+}
+
+@media screen and (max-width: 900px) {
+    .grid_buscar {
+        flex-direction: column;
+    }
+    
+    .separador_buscar {
+        transform: rotate(90deg); 
+        padding: 10px 0;
+    }
+}

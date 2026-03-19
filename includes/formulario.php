@@ -35,35 +35,57 @@
 <head>
     <meta charset="UTF-8">
     <title>Formulario Ayuda</title>
+    <link rel="stylesheet" href="../assets/css/style_form_ayuda.css">
 </head>
 <body>
 
-    <h2 class="titulo_formulario">FORMULARIO AYUDA</h2>
-    
-    <form action="?accion=crear" method="POST" enctype="multipart/form-data">
+    <!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario Ayuda</title>
+    <link rel="stylesheet" href="../assets/css/style_formulario.css">
+</head>
+<body>
 
-        <div class="nombre">
-            <label class="label_form">Nombre:</label>
-            <input type="text" name="nombre" class="input_form" required>
+    <div class="formulario_wrapper">
+        <div class="formulario_card">
+            
+            <div class="formulario_cabecera">
+                <h2 class="titulo_formulario">¿Necesitas Ayuda?</h2>
+                <p>Rellena el formulario y nos pondremos en contacto contigo lo antes posible.</p>
+            </div>
+            
+            <form action="?accion=crear" method="POST">
+
+                <div class="form_group">
+                    <label class="label_form">Nombre completo</label>
+                    <input type="text" name="nombre" class="input_form" placeholder="Ej. Alejandro Calvo Mateos" required>
+                </div>
+
+                <div class="form_group">
+                    <label class="label_form">Correo electrónico</label>
+                    <input type="email" name="email" class="input_form" placeholder="Ej. acalvmat@myuax.com" required>
+                </div>
+
+                <div class="form_group">
+                    <label class="label_form">Descríbenos tu problema</label>
+                    <textarea name="descripcion" class="input_form textarea_form" rows="4" placeholder="Dinos aquí lo que te ocurre..." required></textarea>
+                </div>
+
+                <div class="form_group">
+                    <label class="label_form">Imagen a aportar (Opcional)</label>
+                    <input type="file" name="imagen" class="input_file">
+                </div>
+
+                <button type="submit" class="btn_form" name="btn_formulario">ENVIAR MENSAJE</button>
+            </form>
         </div>
+    </div>
 
-        <div class="email">
-            <label class="label_form">Email:</label>
-            <input type="email" name="email" class="input_form" required>
-        </div>
-
-        <div class="descripcion">
-            <label class="label_form">Describenos tu problema:</label>
-            <input type="text" name="descripcion" class="input_form" required>
-        </div>
-
-        <div class="imagen">
-            <label class="label_form">Imagen a aportar:</label>
-            <input type="file" name="imagen" class="input_form">
-        </div>
-
-        <button class="btn_form" name="btn_formulario">ENVIAR</button>
-    </form>
+</body>
+</html>
 
 </body>
 </html>

@@ -1,2 +1,29 @@
+:root{
+    --color-primario: #455B72; 
+    --color-secundario: #7B9CBF; 
+    --color-terciario: #1b5cb7;
+    --color-fondo: #D7D7D7; 
+    --color-texto: #333333;
+    --color-texto-claro: #F1F1F1;
+    --color-boton: #0C0A0D;
+    --color-borde: #000000;
+    --color-error: #fe0022;
+}
 
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Helvetica, Arial, sans-serif;
+}
 
+hr.separador {
+    border: none;
+    height: 2px;
+    background-color: var(--color-primario);
+    opacity: 0.8; 
+    width: 70%;
+    margin: 80px auto;
+    scroll-margin-top: 120px;
+    
+}
