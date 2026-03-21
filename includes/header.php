@@ -21,19 +21,18 @@ $fotoheader= $stmt->fetchAll();
 </head>
 <body>
     
-    <h3><?=$empresa['nombre']?></h3>
     <?php if (count($fotoheader) > 0): ?>  <!-- SI HAY FOTOS EN LA BASE DE DATOS, SE MUESTRAN TODAS LAS FOTOS DE LA SECCIÓN 2-->
         <div class="header">
+            <h3><?=$empresa['nombre']?></h3>
             <?php foreach ($fotoheader as $fotoenseñar): ?>
                 <div class="fotoheader">
-                    <img src="../assets/img/fotoheader/<?= $fotoenseñar['url'] ?>" alt="<?= $fotoenseñar['descripcion'] ?>" width="100%" height="700">
+                    <img src="../assets/img/fotoheader/<?= $fotoenseñar['url'] ?>" alt="<?= $fotoenseñar['descripcion'] ?>">
                 </div>
             <?php endforeach; ?>
+            <button>MAS INFORMACION</button>
         </div>
     <?php else: ?>  <!-- SI NO HAY FOTOS EN LA BASE DE DATOS -->
         <p>No hay fotos en la base de datos.</p>
     <?php endif; ?>
-
-<button>MAS INFORMACION</button> <!-- BOTON DE MAS INFORMACION, NO HACE NADA POR EL MOMENTO -->
 </body>
 </html>
