@@ -62,7 +62,7 @@
                         
                         <input type="checkbox" id="menu-toggle" class="menu-checkbox">
                         <label for="menu-toggle">
-                            <img src="../assets/img/perfilusuario/<?=$perfilusuario['foto']?>" alt="<?=$perfilusuario['nombre']?>" class="perfilfoto">
+                                <img src="../assets/img/perfilusuario/<?=$perfilusuario['foto']?>" alt="<?=$perfilusuario['nombre']?>" class="perfilfoto">
                         </label>
                         
                         <div class="submenu">
@@ -85,6 +85,6 @@
 
 </div>
 </nav>
-    <script src="../assets/js/menu_animado.js"></script>  
+        <script src="../assets/js/menu_animado.js"></script>  
 </body>
 </html>

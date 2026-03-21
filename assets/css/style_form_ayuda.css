@@ -1,3 +1,14 @@
+:root{
+    --color-primario: #455B72; 
+    --color-secundario: #7B9CBF; 
+    --color-terciario: #1b5cb7;
+    --color-fondo: #20bc6e; 
+    --color-texto: #333333;
+    --color-texto-claro: #F1F1F1;
+    --color-boton: #0C0A0D;
+    --color-borde: #000000;
+    --color-error: #fe0022;
+}
 
 .formulario_wrapper {
     display: flex;

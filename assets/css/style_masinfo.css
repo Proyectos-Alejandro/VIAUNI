@@ -1,0 +1,111 @@
+:root {
+    --color-primario: #455B72; 
+    --color-secundario: #7B9CBF; 
+    --color-terciario: #1b5cb7;
+    --color-fondo: #D7D7D7; 
+    --color-texto: #333333;
+}
+
+.bloque_informacion {
+    width: 90%; 
+    max-width: 1500px; 
+    margin: 0 auto;
+    padding: 60px 0; 
+}
+
+.info_fila {
+    display: flex;
+    align-items: center; 
+    justify-content: space-between;
+    gap: 80px; 
+    margin-bottom: 100px; 
+}
+
+.info_fila:nth-child(even) {
+    flex-direction: row-reverse;
+}
+.info_texto {
+    flex: 1; 
+    display: flex;
+    flex-direction: column;
+}
+
+.info_titulo h2 {
+    color: var(--color-primario);
+    font-size: 36px;
+    font-weight: 900;
+    margin-bottom: 15px;
+    line-height: 1.2;
+    text-transform: uppercase;
+}
+
+.info_descripcion p {
+    color: #444444;
+    font-size: 16px;
+    line-height: 1.7; 
+    margin-bottom: 25px;
+    text-align: justify;
+}
+
+.btn_info {
+    background-color: var(--color-terciario);
+    color: #ffffff;
+    padding: 14px 30px;
+    font-size: 15px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s;
+    width: fit-content; 
+}
+
+.btn_info:hover {
+    background-color: #154a96;
+}
+
+.btn_info:active {
+    transform: scale(0.98);
+}
+
+.info_imagen {
+    flex: 1; 
+    display: flex;
+    justify-content: center;
+}
+
+
+.info_imagen img {
+    width: 100%; 
+    max-width: 700px; 
+    
+    aspect-ratio: 4 / 3; 
+    object-fit: cover; 
+    border-radius: 16px; 
+    box-shadow: 0 15px 35px rgba(69, 91, 114, 0.2); 
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+@media screen and (max-width: 900px) {
+    
+    .info_fila, 
+    .info_fila:nth-child(even) {
+        flex-direction: column;
+        gap: 30px;
+        margin-bottom: 60px;
+    }
+
+    .info_texto {
+        text-align: center;
+        align-items: center; 
+    }
+
+    .info_descripcion p {
+        text-align: center;
+    }
+
+    .info_imagen img {
+        max-width: 100%; 
+    }
+}
+

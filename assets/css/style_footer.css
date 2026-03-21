@@ -17,10 +17,6 @@
     font-family: Helvetica, Arial, sans-serif;
 }
 
-body {
-    background-color: var(--color-fondo);
-}
-
 footer {
     background-color: var(--color-primario);
     color: var(--color-texto-claro);

@@ -29,7 +29,7 @@ $fotoheader= $stmt->fetchAll();
                     <img src="../assets/img/fotoheader/<?= $fotoenseñar['url'] ?>" alt="<?= $fotoenseñar['descripcion'] ?>">
                 </div>
             <?php endforeach; ?>
-            <button>MAS INFORMACION</button>
+            <button><a href="#mas_info">MAS INFORMACION</a></button>
         </div>
     <?php else: ?>  <!-- SI NO HAY FOTOS EN LA BASE DE DATOS -->
         <p>No hay fotos en la base de datos.</p>
