@@ -5,7 +5,7 @@
         $stmtlogo = $pdo->query("SELECT logo, nombre FROM empresa LIMIT 1"); // LOGO Y NOMBRE DE LA EMPRESA //
         $empresa = $stmtlogo->fetch();
         
-        $stmtusuario = $pdo->query("SELECT foto, nombre FROM usuario LIMIT 1"); // FOTO Y NOMBRE DEL USUARIO LOGUEADO //
+        $stmtusuario = $pdo->query("SELECT foto, nombre FROM usuario where id = " . $_SESSION['user_id'] . " LIMIT 1"); // FOTO Y NOMBRE DEL USUARIO LOGUEADO //
         $perfilusuario = $stmtusuario->fetch();
 
         $stmtmenu = $pdo->query("SELECT OPCION, SECCION FROM menu WHERE ID!=9 AND ID!=10 AND ID!=11 ORDER BY ORDEN ASC"); // OPCIONES DE MENÚ PRINCIPAL SELECCIONA TODAS LAS SECCIONES MENOS LA 9, 10 Y 11 //
@@ -13,6 +13,9 @@
 
         $stmtmenuusuario = $pdo->query("SELECT OPCION, SECCION FROM MENU WHERE ID=9 OR ID=10 OR ID=11");
         $menuusuario = $stmtmenuusuario->fetchall(); // LO MISMO QUE LA ANTERIOR PERO SOLO CON LAS SECCIONES 9, 10 Y 11 //
+
+        $usuario_imagen = $_SESSION['user_id'];
+
 
 ?>
 
@@ -62,7 +65,7 @@
                         
                         <input type="checkbox" id="menu-toggle" class="menu-checkbox">
                         <label for="menu-toggle">
-                                <img src="../assets/img/perfilusuario/<?=$perfilusuario['foto']?>" alt="<?=$perfilusuario['nombre']?>" class="perfilfoto">
+                                <img src="<?php echo '../assets/img/perfilusuario/' . ($perfilusuario['foto']); ?>" alt="<?=$perfilusuario['nombre']?>" class="perfilfoto">
                         </label>
                         
                         <div class="submenu">

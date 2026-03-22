@@ -134,6 +134,8 @@
         if (!empty($filtro_destino_cp)) { $filtro_viaje .= " AND C2.CP LIKE :CP_DESTINO"; }
         if (!empty($filtro_fecha)) { $filtro_viaje .= " AND DATE(V.FECHA_HORA) = :fecha"; }
         if (!empty($filtro_plazas)) { $filtro_viaje .= " AND V.PLAZAS_TOTALES = :plazas"; }
+        
+        $filtro_viaje .= " ORDER BY V.FECHA_HORA ASC";
 
         $stmt = $pdo->prepare($filtro_viaje);
 
@@ -149,7 +151,7 @@
         if (!empty($filtro_plazas)) { $stmt->bindValue(':plazas', (int)$filtro_plazas); }
 
         $stmt->execute();
-        $infoviaje = $stmt->fetchAll(PDO::FETCH_ASSOC); 
+        $infoviaje = $stmt->fetchAll(PDO::FETCH_ASSOC);
     ?>
 
     <?php if (count($infoviaje) > 0): ?> 
@@ -157,7 +159,7 @@
         <?php foreach ($infoviaje as $viaje): ?>
             <div class="tarjeta_viaje">
                 <div class="tv_cabecera">
-                    <img src="<?php echo '../assets/img/perfilusuario/' . ($viaje['FOTO'] ? $viaje['FOTO'] : 'default.png'); ?>" alt="Foto" class="tv_foto">
+                    <img src="<?php echo '../assets/img/perfilusuario/' . ($viaje['FOTO']); ?>" alt="Foto" class="tv_foto">
                     <div class="tv_info_conductor">
                         <h4><?php echo ($viaje['NOMBRE'] . ' ' . $viaje['APELLIDO1'] . ' ' . $viaje['APELLIDO2']); ?></h4>
                     </div>
@@ -165,9 +167,9 @@
 
                 <div class="tv_cuerpo">
                     <div class="tv_ruta">
-                        <div class="punto origen"><strong>De:</strong> <?php echo ($viaje['MUNICIPIO_ORIGEN'] . ', ' . $viaje['PROVINCIA_ORIGEN']); ?></div>
+                        <div class="punto_origen"><p class="etiqueta_buscar">De: <?php echo ($viaje['MUNICIPIO_ORIGEN'] . ', ' . $viaje['PROVINCIA_ORIGEN']); ?></p> </div>
                         <div class="linea"></div>
-                        <div class="punto destino"><strong>A:</strong> <?php echo ($viaje['MUNICIPIO_DESTINO'] . ', ' . $viaje['PROVINCIA_DESTINO']); ?></div>
+                        <div class="punto_destino"><p class="etiqueta_buscar">A: <?php echo ($viaje['MUNICIPIO_DESTINO'] . ', ' . $viaje['PROVINCIA_DESTINO']); ?></p></div>
                     </div>
                     
                     <div class="tv_detalles_extra">
@@ -204,7 +206,7 @@
         <?php foreach ($error_viajes as $viaje): ?>
             <div class="tarjeta_viaje">
                 <div class="tv_cabecera">
-                    <img src="<?php echo '../assets/img/perfilusuario/' . ($viaje['FOTO'] ? $viaje['FOTO'] : 'default.png'); ?>" alt="Foto" class="tv_foto">
+                    <img src="<?php echo '../assets/img/perfilusuario/' . ($viaje['FOTO']); ?>" alt="Foto" class="tv_foto">
                     <div class="tv_info_conductor">
                         <h4><?php echo ($viaje['NOMBRE'] . ' ' . $viaje['APELLIDO1'] . ' ' . $viaje['APELLIDO2']); ?></h4>
                     </div>
@@ -212,9 +214,9 @@
 
                 <div class="tv_cuerpo">
                     <div class="tv_ruta">
-                        <div class="punto origen"><strong>De:</strong> <?php echo ($viaje['MUNICIPIO_ORIGEN'] . ', ' . $viaje['PROVINCIA_ORIGEN']); ?></div>
+                        <div class="punto_origen"><p class="etiqueta_buscar">De: <?php echo ($viaje['MUNICIPIO_ORIGEN'] . ', ' . $viaje['PROVINCIA_ORIGEN']); ?></p> </div>
                         <div class="linea"></div>
-                        <div class="punto destino"><strong>A:</strong> <?php echo ($viaje['MUNICIPIO_DESTINO'] . ', ' . $viaje['PROVINCIA_DESTINO']); ?></div>
+                        <div class="punto_destino"><p class="etiqueta_buscar">A: <?php echo ($viaje['MUNICIPIO_DESTINO'] . ', ' . $viaje['PROVINCIA_DESTINO']); ?></p></div>
                     </div>
                     
                     <div class="tv_detalles_extra">

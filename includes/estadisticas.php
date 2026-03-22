@@ -29,7 +29,7 @@ require_once '../config/db.php';
     <section id="estadisticas" class="seccion_estadisticas">
     <div class="contenido_estadisticas">
         
-        <h2 class="titulo_seccion">NUESTRO IMPACTO EN LA UAX</h2>
+        <h2 class="titulo_seccion">NUESTRO IMPACTO CON <?php echo $empresa['nombre']; ?></h2>
         <p class="subtitulo">La comunidad crece cada día</p>
 
         <div class="tabla_estadisticas">
@@ -42,14 +42,14 @@ require_once '../config/db.php';
 
             <article class="tarjeta_dato">
                 <div class="numero_grande"><?= $numViajes ?></div>
-                <h3>CONDUCTORES</h3>
-                <p>Han publicado una ruta</p>
+                <h3>VIAJES</h3>
+                <p>Disponibles a dia de hoy</p>
             </article>
 
             <article class="tarjeta_dato">
                 <div class="numero_grande"><?= $numReservas ?></div>
                 <h3>RESERVAS</h3>
-                <p>Viajes compartidos</p>
+                <p>Realizadas en <?=$empresa['nombre']?></p>
             </article>
 
         </div>

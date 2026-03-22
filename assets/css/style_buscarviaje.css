@@ -51,6 +51,12 @@
     margin-bottom: 5px;
 }
 
+.etiqueta_buscar {
+    font-weight: bold;
+    color: var(--color-primario);
+    text-transform: uppercase;
+}
+
 .input_buscar {
     padding: 12px;
     border: 1px solid #d1d1d1;
