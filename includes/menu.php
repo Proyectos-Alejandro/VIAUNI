@@ -8,11 +8,14 @@
         $stmtusuario = $pdo->query("SELECT foto, nombre FROM usuario where id = " . $_SESSION['user_id'] . " LIMIT 1"); // FOTO Y NOMBRE DEL USUARIO LOGUEADO //
         $perfilusuario = $stmtusuario->fetch();
 
-        $stmtmenu = $pdo->query("SELECT OPCION, SECCION FROM menu WHERE ID!=9 AND ID!=10 AND ID!=11 ORDER BY ORDEN ASC"); // OPCIONES DE MENÚ PRINCIPAL SELECCIONA TODAS LAS SECCIONES MENOS LA 9, 10 Y 11 //
+        $stmtmenu = $pdo->query("SELECT OPCION, SECCION FROM menu WHERE ID!=9 AND ID!=10 AND ID!=11 AND ID!=12 ORDER BY ORDEN ASC"); // OPCIONES DE MENÚ PRINCIPAL SELECCIONA TODAS LAS SECCIONES MENOS LA 9, 10 Y 11 //
         $menupagina = $stmtmenu->fetchAll();
 
-        $stmtmenuusuario = $pdo->query("SELECT OPCION, SECCION FROM MENU WHERE ID=9 OR ID=10 OR ID=11");
+        $stmtmenuusuario = $pdo->query("SELECT OPCION, SECCION FROM MENU WHERE ID!=1 AND ID!=2 AND ID!=3 AND ID!=4 AND ID!=10 AND ID!=9 ORDER BY ORDEN ASC"); 
         $menuusuario = $stmtmenuusuario->fetchall(); // LO MISMO QUE LA ANTERIOR PERO SOLO CON LAS SECCIONES 9, 10 Y 11 //
+
+        $stmtregin =$pdo->query("SELECT ID FROM usuario WHERE ID=9 OR ID=10");
+        $menu_regin = $stmtregin->fetchall();
 
         $usuario_imagen = $_SESSION['user_id'];
 

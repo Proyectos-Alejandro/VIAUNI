@@ -7,26 +7,29 @@
     if ($accion === 'crear' && $_SERVER['REQUEST_METHOD'] === 'POST') { // SI SE ENVIA UNA FOTO EN EL FORMULARIO SE GUARDA EN LA BASE DE DATOS //
 
         $nombre = $_POST['nombre'];
-        $ID_usuario = $_SESSION['user_id']; // OBTENEMOS EL ID DEL USUARIO LOGUEADO //
+        $ID_usuario = $_SESSION['user_id']; 
         $email = $_POST['email'];
         $descripcion = $_POST['descripcion'];
+        $fecha_hora = date('Y-m-d H:i:s');
         $rutafoto = null; 
 
-        if (!empty($_FILES['imagen']['name'])) {
+        if (!empty($_FILES['imagen_aportada']['name'])) {
             $carpetaImagenes = '../assets/img/fotosformulario/';
-            $nombreImagen = uniqid() . '_' . $_FILES['imagen']['name'];
+            $nombreImagen = uniqid() . '_' . $_FILES['imagen_aportada']['name'];
             
-            if (move_uploaded_file($_FILES['imagen']['tmp_name'], $carpetaImagenes . $nombreImagen)) {
+            if (move_uploaded_file($_FILES['imagen_aportada']['tmp_name'], $carpetaImagenes . $nombreImagen)) {
                 $rutafoto = $carpetaImagenes . $nombreImagen;
             }
         }
 
         
-        $stmt = $pdo->prepare("INSERT INTO formulario_ayuda (ID_USUARIO, NOMBRE, EMAIL, DESCRIPCION, IMAGEN_APORTADA) VALUES (?, ?, ?, ?, ?)");
-        $stmt->execute([$ID_usuario, $nombre, $email, $descripcion, $rutafoto]);  // ESTO GUARDA LOS DATOS EN LA BASE DE DATOS //
+        $stmt = $pdo->prepare("INSERT INTO formulario_ayuda (ID_USUARIO, NOMBRE, EMAIL, DESCRIPCION, IMAGEN_APORTADA, FECHA) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt->execute([$ID_usuario, $nombre, $email, $descripcion, $rutafoto, $fecha_hora]);  // ESTO GUARDA LOS DATOS EN LA BASE DE DATOS //
 
         echo "<script>window.location.href='index.php';</script>";
         exit;
+    }else {
+        
     }
 ?>
 
@@ -57,7 +60,7 @@
                 <p>Rellena el formulario y nos pondremos en contacto contigo lo antes posible.</p>
             </div>
             
-            <form action="?accion=crear" method="POST">
+            <form action="?accion=crear" method="POST" enctype="multipart/form-data" class="formulario_form">
 
                 <div class="form_group">
                     <label class="label_form">Nombre completo</label>
@@ -76,7 +79,7 @@
 
                 <div class="form_group">
                     <label class="label_form">Imagen a aportar (Opcional)</label>
-                    <input type="file" name="imagen" class="input_file">
+                    <input type="file" name="imagen_aportada" class="input_file">
                 </div>
 
                 <button type="submit" class="btn_form" name="btn_formulario">ENVIAR MENSAJE</button>
