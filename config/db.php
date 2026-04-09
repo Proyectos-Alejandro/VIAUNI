@@ -1,6 +1,6 @@
 <?php
 $host = 'localhost';
-$dbname = 'proyecto_intermodular';
+$dbname = 'proyecto_intermodular_test';
 $username = 'root';
 $password = '';
 

@@ -10,12 +10,6 @@
     --color-borde: #000000;
 }
 
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Helvetica, Arial, sans-serif;
-}
 
 footer {
     background-color: var(--color-primario);
@@ -31,6 +25,7 @@ footer {
     padding: 40px 10%; 
     flex-wrap: wrap;
     gap: 30px;
+    width: 100%;
 }
 
 
@@ -88,7 +83,6 @@ footer {
 
 .enlaces-footer ul li a:hover {
     color: var(--color-secundario);
-    text-decoration: underline;
 }
 
 

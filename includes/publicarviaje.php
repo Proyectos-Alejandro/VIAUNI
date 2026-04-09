@@ -18,8 +18,8 @@
 
     $opcionesviaje_cp = $pdo->query("SELECT DISTINCT CP FROM CIUDADES WHERE CP COLLATE utf8mb4_unicode_ci LIKE '%%';");
     $viajes_cp = $opcionesviaje_cp->fetchAll(PDO::FETCH_ASSOC);
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,16 +41,24 @@
             <h3 class="subtitulo_ruta">Ruta</h3>
             <div class="grupo_compacto">
                 <input list="filtro_origen_pais" name="filtro_origen_pais" class="input_form" placeholder="País Origen">
-                <datalist id="filtro_origen_pais"><?php if(count($viajes_pais) > 0) foreach ($viajes_pais as $vp) echo '<option value="'.$vp['PAIS'].'">'; ?></datalist>
+                <datalist id="filtro_origen_pais">
+                    <?php if(count($viajes_pais) > 0) foreach ($viajes_pais as $vp) echo '<option value="'.$vp['PAIS'].'">'; ?>
+                </datalist>
 
                 <input list="filtro_origen_provincia" name="filtro_origen_provincia" class="input_form" placeholder="Provincia Origen">
-                <datalist id="filtro_origen_provincia"><?php if(count($viajes_provincia) > 0) foreach ($viajes_provincia as $vp) echo '<option value="'.$vp['PROVINCIA'].'">'; ?></datalist>
+                <datalist id="filtro_origen_provincia">
+                    <?php if(count($viajes_provincia) > 0) foreach ($viajes_provincia as $vp) echo '<option value="'.$vp['PROVINCIA'].'">'; ?>
+                </datalist>
 
                 <input list="filtro_origen_municipio" name="filtro_origen_municipio" class="input_form" placeholder="Municipio Origen">
-                <datalist id="filtro_origen_municipio"><?php if(count($viajes_municipio) > 0) foreach ($viajes_municipio as $vm) echo '<option value="'.$vm['MUNICIPIO'].'">'; ?></datalist>
+                <datalist id="filtro_origen_municipio">
+                    <?php if(count($viajes_municipio) > 0) foreach ($viajes_municipio as $vm) echo '<option value="'.$vm['MUNICIPIO'].'">'; ?>
+                </datalist>
 
                 <input list="filtro_origen_cp" name="filtro_origen_cp" class="input_form" placeholder="CP Origen">
-                <datalist id="filtro_origen_cp"><?php if(count($viajes_cp) > 0) foreach ($viajes_cp as $vcp) echo '<option value="'.$vcp['CP'].'">'; ?></datalist>
+                <datalist id="filtro_origen_cp">
+                    <?php if(count($viajes_cp) > 0) foreach ($viajes_cp as $vcp) echo '<option value="'.$vcp['CP'].'">'; ?>
+                </datalist>
             </div>
 
             <div class="separador_ruta">&#8595;</div> <div class="grupo_compacto">
@@ -67,9 +75,9 @@
                 <datalist id="filtro_destino_cp"><?php if(count($viajes) > 0) foreach ($viajes as $v) echo '<option value="'.$v['CP'].'">'; ?></datalist>
             </div>
 
-            <h3 class="subtitulo_ruta" style="margin-top: 20px;">Detalles</h3>
+            <h3 class="subtitulo_ruta">Detalles</h3>
             <div class="grupo_compacto">
-                <input type="date" name="filtro_fecha" class="input_form" required>
+                <input type="datetime-local" name="filtro_fecha" class="input_form" required>
                 <div class="fila_doble">
                     <input type="number" name="filtro_plazas" class="input_form" placeholder="Nº Plazas" min="1" required>
                     <input type="number" step="0.01" name="filtro_precio" class="input_form" placeholder="Precio (€)" min="0" required>

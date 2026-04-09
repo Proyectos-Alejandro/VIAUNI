@@ -6,7 +6,7 @@
 
 .header {
     position: relative;
-    width: 100vw; 
+    width: 100%; 
     height: 70vh; 
     min-height: 500px;
     display: flex;
@@ -61,14 +61,17 @@
 
 .fotoheader {
     position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
+    top: 0; 
+    left: 0;
+    width: 100%; 
+    height: 100%;
     opacity: 1; 
     z-index: 1;
 }
 
 .fotoheader img {
-    width: 100%; height: 100%;
+    width: 100%; 
+    height: 100%;
     object-fit: cover;
     filter: brightness(0.4); 
 }

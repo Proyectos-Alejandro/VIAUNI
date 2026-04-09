@@ -1,7 +1,19 @@
 <?php 
-    require_once '../config/db.php';
 
-    $stmt = $pdo->query("SELECT U.NOMBRE, U.APELLIDO1, U.APELLIDO2, U.COCHE, U.FOTO, C1.PAIS AS PAIS_ORIGEN,C1.PROVINCIA AS PROVINCIA_ORIGEN,C1.MUNICIPIO AS MUNICIPIO_ORIGEN,C1.CP AS CP_ORIGEN, C2.PAIS AS PAIS_DESTINO, C2.PROVINCIA AS PROVINCIA_DESTINO,C2.MUNICIPIO AS MUNICIPIO_DESTINO,C2.CP AS CP_DESTINO, V.FECHA_HORA, V.PLAZAS_TOTALES, V.PRECIO, V.DESCRIPCION_EXTRA FROM VIAJES V INNER JOIN USUARIO U ON U.ID = V.CONDUCTOR_ID INNER JOIN CIUDADES C1 ON C1.ID = V.ID_ORIGEN INNER JOIN CIUDADES C2 ON C2.ID = V.ID_DESTINO;");
+    $stmt = $pdo->query("SELECT U.NOMBRE, 
+                            U.APELLIDO1, 
+                            U.APELLIDO2, 
+                            U.COCHE, 
+                            U.FOTO, 
+                            C1.PAIS AS PAIS_ORIGEN,C1.PROVINCIA AS PROVINCIA_ORIGEN,C1.MUNICIPIO AS MUNICIPIO_ORIGEN,C1.CP AS CP_ORIGEN, 
+                            C2.PAIS AS PAIS_DESTINO, 
+                            C2.PROVINCIA AS PROVINCIA_DESTINO,C2.MUNICIPIO AS MUNICIPIO_DESTINO,C2.CP AS CP_DESTINO, 
+                            V.FECHA_HORA, 
+                            V.PLAZAS_TOTALES, 
+                            V.PRECIO, 
+                            V.DESCRIPCION_EXTRA 
+                            
+                            FROM VIAJES V INNER JOIN USUARIO U ON U.ID = V.CONDUCTOR_ID INNER JOIN CIUDADES C1 ON C1.ID = V.ID_ORIGEN INNER JOIN CIUDADES C2 ON C2.ID = V.ID_DESTINO;");
     $infoviaje = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     $opcionesviaje = $pdo->query("SELECT ID, PAIS, PROVINCIA, MUNICIPIO, CP FROM CIUDADES WHERE PAIS COLLATE utf8mb4_unicode_ci LIKE '%%' AND PROVINCIA COLLATE utf8mb4_unicode_ci LIKE '%%' AND MUNICIPIO COLLATE utf8mb4_unicode_ci LIKE '%%' AND CP COLLATE utf8mb4_unicode_ci LIKE '%%';");

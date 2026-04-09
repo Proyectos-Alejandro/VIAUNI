@@ -1,5 +1,4 @@
 <?php
-session_start();
 require_once '../config/db.php';
 $mensaje = "";
 
@@ -63,7 +62,6 @@ if (isset($_POST['btn_login'])) {  // COMPROBAR SI LA INFO EXISTE EN LA BASE DE 
         $mensaje = "Usuario o contraseña incorrectos.";
     }
 }
-      // DECORACIÓN //  
         $stmtlogo = $pdo->query("SELECT logo, nombre FROM empresa LIMIT 1");
         $empresa = $stmtlogo->fetch();
 
@@ -77,7 +75,8 @@ if (isset($_POST['btn_login'])) {  // COMPROBAR SI LA INFO EXISTE EN LA BASE DE 
     <title>Login | VIAUNI</title>
     <link rel="stylesheet" href="../assets/css/style_log_reg.css">
 </head>
-<body class="pagina_login">
+<body>
+    <div class="pagina_login">
 
     <div class="caja_login">
         <div class="info_login">
@@ -95,7 +94,7 @@ if (isset($_POST['btn_login'])) {  // COMPROBAR SI LA INFO EXISTE EN LA BASE DE 
             <div id="formulario_login">
                 <h3>INICIAR SESIÓN</h3>
                 <form method="POST" action="">
-                    <input type="email" name="email" placeholder="Correo UAX (ej. a.calv.mat@myuax.com)" required>
+                    <input type="email" name="email" placeholder="Correo (ej. a.calv.mat@myuax.com)" required>
                     <input type="password" name="password" placeholder="Contraseña" required>
                     <button type="submit" name="btn_login" class="btn-full">ENTRAR</button>
                 </form>
@@ -118,5 +117,8 @@ if (isset($_POST['btn_login'])) {  // COMPROBAR SI LA INFO EXISTE EN LA BASE DE 
         </div>
     </div>
 
+    </div>
+
 </body>
+<script src="../assets/js/log_reg.js"></script>  
 </html>

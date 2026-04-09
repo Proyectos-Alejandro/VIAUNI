@@ -1,10 +1,6 @@
 <?php 
 session_start();
-
-if (!isset($_SESSION['user_id'])) {
-    header("Location: login_registro.php");
-    exit();
-}
+$esta_logueado = isset($_SESSION['user_id']);
 ?>
 
 
@@ -19,21 +15,41 @@ if (!isset($_SESSION['user_id'])) {
 </head>
 <body>
 
-    <?php include '../includes/menu.php'; ?>
+    <?php if ($esta_logueado): ?>
+        <?php include '../includes/menu.php'; ?>
+    <?php else: ?>
+        <?php include '../includes/menu_log_reg.php'; ?>
+    <?php endif; ?>
+    
     <hr id="home">
     <?php include '../includes/header.php'; ?>
-    <hr id="buscarviaje" class="separador">
-    <?php include '../includes/buscarviaje.php'; ?>
-    <hr id="estadisticas" class="separador">
-    <?php include '../includes/estadisticas.php'; ?>
-    <hr id="mas_info" class="separador">
-    <?php include '../includes/bloque_informacion.php'; ?>
-    <hr id="publicarviaje" class="separador">
-    <?php include '../includes/publicarviaje.php'; ?>
-    <hr id="formulario" class="separador">
-    <?php include '../includes/formulario.php'; ?>
-    <hr>
-    <?php include '../includes/footer.php'; ?>
+
+    <?php if ($esta_logueado): ?>
+        <hr id="buscarviaje" class="separador">
+        <?php include '../includes/buscarviaje.php'; ?>
+        <hr id="estadisticas" class="separador">
+        <?php include '../includes/estadisticas.php'; ?>
+        <hr id="mas_info" class="separador">
+        <?php include '../includes/bloque_informacion.php'; ?>
+        <hr id="publicarviaje" class="separador">
+        <?php include '../includes/publicarviaje.php'; ?>
+        <hr id="formulario" class="separador">
+        <?php include '../includes/formulario.php'; ?>
+        <hr>
+        <?php include '../includes/footer.php'; ?>
+    <?php else: ?>
+        <hr id="home" class="sinseparador">
+        <hr id="caja_login" class="sinseparador">
+        <?php include '../includes/login_registro.php'; ?>
+        <hr id="estadisticas" class="separador">
+        <?php include '../includes/estadisticas.php'; ?>
+        <hr id="mas_info" class="separador">
+        <?php include '../includes/bloque_informacion.php'; ?>
+        <hr id="formulario" class="separador">
+        <?php include '../includes/formulario.php'; ?>
+        <hr>
+        <?php include '../includes/footer.php'; ?>
+    <?php endif; ?>
 
 </body>
 </html>

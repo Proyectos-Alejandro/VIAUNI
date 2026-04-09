@@ -21,3 +21,34 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    const formLogin = document.getElementById('formulario_login'); 
+    const formRegistro = document.getElementById('formulario_registro');
+    
+    const menuToggle = document.getElementById('menu-toggle');
+
+    const enlacesSubmenu = document.querySelectorAll('.submenu a');
+
+    enlacesSubmenu.forEach(enlace => {
+        enlace.addEventListener('click', function(e) {
+            const textoEnlace = this.textContent.trim().toUpperCase();
+
+            if (textoEnlace.includes('INICIAR SESIÓN') || textoEnlace.includes('REGISTRARSE')) {
+                
+                if (textoEnlace.includes('INICIAR SESIÓN')) {
+                    if (formLogin) formLogin.style.display = 'block';
+                    if (formRegistro) formRegistro.style.display = 'none';
+                } 
+                else if (textoEnlace.includes('REGISTRARSE')) {
+                    if (formLogin) formLogin.style.display = 'none';
+                    if (formRegistro) formRegistro.style.display = 'block';
+                }
+
+                if (menuToggle) {
+                    menuToggle.checked = false;
+                }
+            }
+        });
+    });
+});
