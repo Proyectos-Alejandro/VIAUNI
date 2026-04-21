@@ -39,15 +39,6 @@ footer {
 }
 
 
-.footer_columna h4::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    height: 2px;
-    width: 40px;
-    background-color: var(--color-secundario);
-}
 
 .iconos-redes {
     display: flex;
@@ -119,11 +110,6 @@ footer {
         flex-direction: column; 
         text-align: center;
         align-items: center;
-    }
-
-    .footer_columna h4::after {
-        left: 50%; 
-        transform: translateX(-50%);
     }
 
     .enlaces-footer ul {
