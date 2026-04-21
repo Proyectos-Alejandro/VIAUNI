@@ -5,7 +5,7 @@ Proyecto Multimodular - 1º ASIR - UAX FP (Curso 2025-2026)
 
 Descripción del Proyecto
 
-Blablax es una plataforma web diseñada para solucionar uno de los problemas más comunes de los estudiantes universitarios: el transporte al campus.
+ViaUni es una plataforma web diseñada para solucionar uno de los problemas más comunes de los estudiantes universitarios: el transporte al campus.
 
 Inspirado en el concepto de BlaBlaCar, este proyecto actúa como puente entre estudiantes con coche y pasajeros que buscan transporte. El objetivo principal es garantizar que ningún coche viaje vacío, fomentando la sostenibilidad, reduciendo gastos y haciendo el camino a clase mucho más eficiente.
 
@@ -57,20 +57,3 @@ Ordenado por fecha.
 
 Botón directo para "Reservar Plaza".
 
-4. Panel "Mis Viajes"
-Un panel de control personal donde el usuario puede gestionar su actividad:
-
-Ver los viajes publicados.
-
-Consultar las reservas realizadas.
-
-Opción para cancelar viajes.
-
-5. Panel de Administración
-Acceso exclusivo para el personal de la universidad o administradores del sistema para:
-
-Ver todos los usuarios registrados.
-
-Eliminar viajes inapropiados.
-
-Gestionar incidencias.
