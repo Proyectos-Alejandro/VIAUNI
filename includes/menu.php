@@ -90,7 +90,6 @@
         </div>
 
 </div>
-</nav>
-        <script src="../assets/js/menu_animado.js"></script>  
+</nav> 
 </body>
 </html>

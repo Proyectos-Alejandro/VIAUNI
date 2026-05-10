@@ -88,6 +88,5 @@
 
 </div>
 </nav>
-        <script src="../assets/js/menu_animado.js"></script>  
 </body>
 </html>
