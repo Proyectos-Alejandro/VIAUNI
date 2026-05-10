@@ -10,6 +10,12 @@
     --color-error: #fe0022;
 }
 
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Helvetica, Arial, sans-serif;
+}
 
 body {
     background-color: var(--color-fondo);
@@ -25,6 +31,7 @@ body {
     box-shadow: 0 1px 10px rgba(3, 16, 255, 0.652);
     position: sticky;
     top: 0;
+    transition: padding 0.4s ease;
 }
 .navperfil {
     position: sticky;
