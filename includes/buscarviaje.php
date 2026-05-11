@@ -177,7 +177,7 @@
             <?php endforeach; ?>
         </div>
 
-        <div style="text-align: center; margin-top: 30px;">
+        <div class="paginacion">
             <?php 
                 $parametros_url = $_GET; 
             ?>

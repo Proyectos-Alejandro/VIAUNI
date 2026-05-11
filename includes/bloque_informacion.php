@@ -30,7 +30,7 @@
                     </div>
                     <div class="info_boton">
                         <?php if (!empty($info['BOTON'])): ?>
-                            <button type="button" class="btn_info"><?php echo ($info['BOTON']); ?></button>
+                            <button type="button" class="btn_info"><a href="<?php echo ($info['Enlace']); ?>"><?php echo ($info['BOTON']); ?></a></button>
                         <?php endif; ?>
                     </div>
                 </div>
